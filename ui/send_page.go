@@ -589,6 +589,10 @@ func (pg *sendPage) walletAccountSection(gtx layout.Context, common pageCommon) 
 		},
 		func(gtx C) D {
 			return pg.walletsList.Layout(gtx, len(common.info.Wallets), func(gtx C, i int) D {
+				if common.info.Wallets[i].IsWatchingOnly {
+					return D{}
+				}
+
 				wn := common.info.Wallets[i].Name
 				accounts := common.info.Wallets[i].Accounts
 				wIndex := i
